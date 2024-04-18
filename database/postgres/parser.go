@@ -664,6 +664,8 @@ func (p PostgresParser) parseExpr(stmt *pgquery.Node) (parser.Expr, error) {
 		default:
 			return nil, fmt.Errorf("unknown AExpr kind in parseExpr: %#v", node.AExpr)
 		}
+	case *pgquery.Node_CoalesceExpr:
+		return nil, fmt.Errorf("coalesce not implemented: %#v", node)
 	default:
 		return nil, fmt.Errorf("unknown node in parseExpr: %#v", node)
 	}
